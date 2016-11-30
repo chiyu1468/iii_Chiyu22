@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
             take1(myPic);
         } else if(requestCode == 22 && resultCode == RESULT_OK){
             take2();
+        } else if(requestCode == 33 && resultCode == RESULT_OK) {
+            take3();
         }
     }
 
@@ -73,9 +75,12 @@ public class MainActivity extends AppCompatActivity {
 
     // >>>>>>>> 自定義相機 <<<<<<<<
     public void test3(View v){
-
         Intent it = new Intent(this,CameraView.class);
         startActivityForResult(it,33);
+    }
+    private void take3(){
+        Bitmap bp = BitmapFactory.decodeFile(new File(sdroot, "chiyu.jpg").getAbsolutePath());
+        iv.setImageBitmap(bp);
     }
 
 

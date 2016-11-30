@@ -3,7 +3,6 @@ package tw.org.iii.iii_chiyu22;
 
 import android.content.Context;
 import android.hardware.Camera;
-import android.util.AttributeSet;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -31,6 +30,7 @@ public class myPreview extends SurfaceView implements SurfaceHolder.Callback{
         Log.v("chiyu", "surface Created");
         try {
             // 把 （camera 的 Preview 畫面） 關連到 （控制 SurfaceView 的 Holder）
+            // 重點句
             camera.setPreviewDisplay(holder);
             // 開始相機的 preview
             // 如果沒有這行 雖然看不到畫面 但是照相機也是能拍照
@@ -44,6 +44,14 @@ public class myPreview extends SurfaceView implements SurfaceHolder.Callback{
     @Override
     public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
         Log.v("chiyu", "surface Changed");
+        try {
+            camera.startPreview();
+            camera.setPreviewDisplay(holder);
+            camera.startPreview();
+        } catch (Exception e) {
+            Log.v("chiyu", "surfaceChanged : " + e.toString());
+        }
+
 
     }
 
